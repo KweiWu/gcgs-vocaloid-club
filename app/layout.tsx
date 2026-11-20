@@ -12,6 +12,10 @@ const siteDescription =
 export const metadata: Metadata = {
   metadataBase: new URL("https://gcgs-vocaloid-club.netlify.app"),
 
+  verification: {
+    google: "chk7MwvXw5Tq9TMb815TtPzbGQgFOdHP1a6_X5VQufk",
+  },
+
   applicationName: siteName,
 
   title: {
@@ -64,7 +68,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className="h-full antialiased"
     >
-      <body className="flex min-h-full flex-col">
+      <body className="min-h-full">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
