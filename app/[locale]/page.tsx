@@ -14,24 +14,26 @@ const localizedMetadata: Record<
   Locale,
   {
     title: string;
+    siteName: string;
     openGraphLocale: string;
   }
 > = {
   "zh-CN": {
-    title: "Vocaloid 音乐与虚拟歌手",
+    title: "广东碧桂园学校 Vocaloid 社团 | Vocaloid 音乐与虚拟歌手",
+    siteName: "广东碧桂园学校 Vocaloid 社团",
     openGraphLocale: "zh_CN",
   },
   en: {
     title: "Vocaloid Music & Virtual Singers",
+    siteName: "GCGS Vocaloid Club",
     openGraphLocale: "en_US",
   },
   ja: {
     title: "ボーカロイド音楽とバーチャルシンガー",
+    siteName: "GCGS Vocaloid Club",
     openGraphLocale: "ja_JP",
   },
 };
-
-const siteName = "GCGS Vocaloid Club";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -53,7 +55,11 @@ export async function generateMetadata({
 
   const title = localized.title;
   const description = dictionary.hero.description;
-  const fullTitle = `${title} | ${siteName}`;
+  const siteName = localized.siteName;
+  const fullTitle =
+    locale === "zh-CN"
+      ? title
+      : `${title} | ${siteName}`;
   const pageUrl = `/${locale}`;
 
   return {

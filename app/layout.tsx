@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 
-const siteName = "GCGS Vocaloid Club";
+const siteName = "广东碧桂园学校 Vocaloid 社团";
 
 const siteDescription =
-  "Explore Vocaloid music, virtual singers, music producers, music theory, and the world of singing synthesis with GCGS Vocaloid Club.";
+  "探索 Vocaloid 音乐、虚拟歌手、音乐制作人、乐理知识与歌声合成的世界，了解广东碧桂园学校 Vocaloid 社团。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gcgs-vocaloid-club.netlify.app"),
@@ -26,10 +26,13 @@ export const metadata: Metadata = {
   description: siteDescription,
 
   keywords: [
+    "广东碧桂园学校",
+    "广东碧桂园学校 Vocaloid 社团",
     "GCGS Vocaloid Club",
     "Vocaloid",
-    "Virtual Singers",
-    "Hatsune Miku",
+    "虚拟歌手",
+    "初音未来",
+    "VOCALOID 音乐",
     "Music",
     "Music Theory",
     "Singing Synthesis",

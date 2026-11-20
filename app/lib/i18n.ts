@@ -80,12 +80,12 @@ export const messages = {
       eyebrow: "创作 · 交流 · 分享",
       title: "每一位虚拟音乐爱好者都能找到自己的位置。",
       description:
-        "发现新音乐，分享你的创作，交流想法，并参与 GCGS Vocaloid Club 的社团活动。",
+        "发现新音乐，分享你的创作，交流想法，并参与广东碧桂园学校 Vocaloid 社团的活动。",
       action: "探索社群",
     },
     footer: {
       slogan: "虚拟之声，真实创意。",
-      copyright: "© 2026 GCGS Vocaloid Club",
+      copyright: "© 2026 归悟（KweiWu）",
       madeWith: "为虚拟音乐而创作。",
     },
     theme: {
@@ -236,7 +236,7 @@ export const messages = {
     },
     footer: {
       slogan: "Virtual voices, real creativity.",
-      copyright: "© 2026 GCGS Vocaloid Club",
+      copyright: "© 2026 归悟（KweiWu）",
       madeWith: "Made for virtual music.",
     },
     theme: {
@@ -388,7 +388,7 @@ export const messages = {
     },
     footer: {
       slogan: "バーチャルな歌声、リアルな創造力。",
-      copyright: "© 2026 GCGS Vocaloid Club",
+      copyright: "© 2026 归悟（KweiWu）",
       madeWith: "バーチャルミュージックとともに。",
     },
     theme: {

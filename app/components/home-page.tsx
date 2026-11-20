@@ -165,7 +165,9 @@ export function HomePage({ locale }: HomePageProps) {
 
             <div>
               <div className="text-base font-bold tracking-tight">
-                GCGS Vocaloid Club
+                {locale === "zh-CN"
+                  ? "广东碧桂园学校 Vocaloid 社团"
+                  : "GCGS Vocaloid Club"}
               </div>
               <div className="text-xs text-[var(--md-sys-color-on-surface-variant)]">
                 {t.footer.slogan}
