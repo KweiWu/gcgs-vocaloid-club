@@ -26,10 +26,12 @@ const localizedMetadata: Record<
     openGraphLocale: "en_US",
   },
   ja: {
-    title: "ボカロ音楽とバーチャルシンガー",
+    title: "ボーカロイド音楽とバーチャルシンガー",
     openGraphLocale: "ja_JP",
   },
 };
+
+const siteName = "GCGS Vocaloid Club";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -51,18 +53,30 @@ export async function generateMetadata({
 
   const title = localized.title;
   const description = dictionary.hero.description;
-  const fullTitle = `${title} | GCGS Vocaloid Club`;
+  const fullTitle = `${title} | ${siteName}`;
+  const pageUrl = `/${locale}`;
 
   return {
     title,
     description,
 
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        "zh-CN": "/zh-CN",
+        en: "/en",
+        ja: "/ja",
+        "x-default": "/zh-CN",
+      },
+    },
+
     openGraph: {
       title: fullTitle,
       description,
-      siteName: "GCGS Vocaloid Club",
+      siteName,
       locale: localized.openGraphLocale,
       type: "website",
+      url: pageUrl,
     },
 
     twitter: {

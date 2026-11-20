@@ -10,6 +10,8 @@ const siteDescription =
   "Explore Vocaloid music, virtual singers, music producers, music theory, and the world of singing synthesis with GCGS Vocaloid Club.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gcgs-vocaloid-club.netlify.app"),
+
   applicationName: siteName,
 
   title: {
