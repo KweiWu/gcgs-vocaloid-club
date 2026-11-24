@@ -73,6 +73,33 @@ export function HomePage({ locale }: HomePageProps) {
           : "Go to homepage",
   };
 
+  const sectionLabels = {
+    music:
+      locale === "zh-CN"
+        ? ["歌曲", "歌单", "音乐发现"]
+        : locale === "ja"
+          ? ["楽曲", "プレイリスト", "音楽発見"]
+          : ["Songs", "Playlists", "Music discovery"],
+    encyclopedia:
+      locale === "zh-CN"
+        ? ["初音未来", "镜音双子", "巡音流歌"]
+        : locale === "ja"
+          ? ["初音ミク", "鏡音リン・レン", "巡音ルカ"]
+          : ["Hatsune Miku", "Kagamine Rin & Len", "Megurine Luka"],
+    theory:
+      locale === "zh-CN"
+        ? ["作曲", "编曲", "调声", "音乐制作"]
+        : locale === "ja"
+          ? ["作曲", "編曲", "調声", "音楽制作"]
+          : ["Composition", "Arrangement", "Vocal tuning", "Production"],
+    comingSoon:
+      locale === "zh-CN"
+        ? "内容正在规划中"
+        : locale === "ja"
+          ? "コンテンツを準備中"
+          : "Content in development",
+  };
+
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
@@ -115,6 +142,7 @@ export function HomePage({ locale }: HomePageProps) {
       description: t.discover.musicDescription,
       color: "var(--gcgs-accent-pink)",
       id: "music",
+      number: "01",
     },
     {
       icon: "🎤",
@@ -122,6 +150,7 @@ export function HomePage({ locale }: HomePageProps) {
       description: t.discover.encyclopediaDescription,
       color: "var(--gcgs-accent-blue)",
       id: "encyclopedia",
+      number: "02",
     },
     {
       icon: "🎼",
@@ -129,6 +158,7 @@ export function HomePage({ locale }: HomePageProps) {
       description: t.discover.theoryDescription,
       color: "var(--gcgs-accent-purple)",
       id: "music-theory",
+      number: "03",
     },
     {
       icon: "🌸",
@@ -136,6 +166,37 @@ export function HomePage({ locale }: HomePageProps) {
       description: t.discover.communityDescription,
       color: "var(--gcgs-accent-yellow)",
       id: "community",
+      number: "04",
+    },
+  ];
+
+  const contentSections = [
+    {
+      id: "music",
+      number: "01",
+      icon: "🎵",
+      title: t.discover.music,
+      description: t.discover.musicDescription,
+      color: "var(--gcgs-accent-pink)",
+      labels: sectionLabels.music,
+    },
+    {
+      id: "encyclopedia",
+      number: "02",
+      icon: "🎤",
+      title: t.discover.encyclopedia,
+      description: t.discover.encyclopediaDescription,
+      color: "var(--gcgs-accent-blue)",
+      labels: sectionLabels.encyclopedia,
+    },
+    {
+      id: "music-theory",
+      number: "03",
+      icon: "🎼",
+      title: t.discover.theory,
+      description: t.discover.theoryDescription,
+      color: "var(--gcgs-accent-purple)",
+      labels: sectionLabels.theory,
     },
   ];
 
@@ -419,71 +480,150 @@ export function HomePage({ locale }: HomePageProps) {
         <section
           id="discover"
           aria-labelledby="discover-heading"
-          className="scroll-mt-24 bg-[var(--md-sys-color-surface-container-low)] py-20"
+          className="scroll-mt-24 bg-[var(--md-sys-color-surface-container-low)] py-20 sm:py-24"
         >
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div className="mb-12 grid gap-5 lg:grid-cols-[1fr_0.7fr] lg:items-end">
               <div>
-                <p className="text-sm font-semibold text-[var(--md-sys-color-primary)]">
+                <p className="text-sm font-semibold tracking-wide text-[var(--md-sys-color-primary)]">
                   {t.discover.eyebrow}
                 </p>
 
                 <h2
                   id="discover-heading"
-                  className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
+                  className="mt-3 max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
                 >
                   {t.discover.title}
                 </h2>
               </div>
 
-              <p className="max-w-md text-sm leading-6 text-[var(--md-sys-color-on-surface-variant)]">
+              <p className="max-w-xl text-base leading-7 text-[var(--md-sys-color-on-surface-variant)] lg:justify-self-end">
                 {t.discover.description}
               </p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-5 md:grid-cols-2">
               {exploreItems.map((item) => (
                 <a
                   key={item.id}
-                  id={item.id === "music" ? undefined : item.id}
-                  href={
-                    item.id === "community"
-                      ? "#community"
-                      : item.id === "music"
-                        ? "#discover"
-                        : `#${item.id}`
-                  }
-                  className="group rounded-3xl border border-[var(--md-sys-color-outline-variant)] bg-[var(--md-sys-color-surface)] p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+                  href={`#${item.id}`}
+                  className="group relative flex min-h-64 flex-col overflow-hidden rounded-[2rem] border border-[var(--md-sys-color-outline-variant)] bg-[var(--md-sys-color-surface)] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-9"
                 >
                   <div
                     aria-hidden="true"
-                    className="flex h-14 w-14 items-center justify-center rounded-2xl text-3xl"
+                    className="absolute -right-10 -top-10 h-44 w-44 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-40"
                     style={{ backgroundColor: item.color }}
-                  >
-                    {item.icon}
+                  />
+
+                  <div className="relative flex items-start justify-between">
+                    <div
+                      aria-hidden="true"
+                      className="flex h-16 w-16 items-center justify-center rounded-2xl text-4xl"
+                      style={{ backgroundColor: item.color }}
+                    >
+                      {item.icon}
+                    </div>
+
+                    <span className="text-sm font-bold tracking-widest text-[var(--md-sys-color-outline)]">
+                      {item.number}
+                    </span>
                   </div>
 
-                  <h3 className="mt-6 text-xl font-bold">
-                    {item.title}
-                  </h3>
+                  <div className="relative mt-8">
+                    <h3 className="text-2xl font-bold tracking-tight">
+                      {item.title}
+                    </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-[var(--md-sys-color-on-surface-variant)]">
-                    {item.description}
-                  </p>
+                    <p className="mt-3 max-w-md text-sm leading-7 text-[var(--md-sys-color-on-surface-variant)]">
+                      {item.description}
+                    </p>
+                  </div>
 
-                  <div className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[var(--md-sys-color-primary)]">
-                    {t.common.explore}
-                    <ArrowRight
-                      size={16}
-                      aria-hidden="true"
-                      className="transition-transform group-hover:translate-x-1"
-                    />
+                  <div className="relative mt-auto flex items-center justify-between pt-7">
+                    <span className="text-sm font-semibold text-[var(--md-sys-color-primary)]">
+                      {t.common.explore}
+                    </span>
+
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--md-sys-color-secondary-container)] text-[var(--md-sys-color-on-secondary-container)] transition-transform duration-300 group-hover:translate-x-1">
+                      <ArrowRight size={18} aria-hidden="true" />
+                    </span>
                   </div>
                 </a>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Music / Encyclopedia / Music Theory */}
+        {contentSections.map((section) => (
+          <section
+            key={section.id}
+            id={section.id}
+            aria-labelledby={`${section.id}-heading`}
+            className="scroll-mt-24 border-b border-[var(--md-sys-color-outline-variant)] py-20 sm:py-24"
+          >
+            <div className="mx-auto max-w-7xl px-5 lg:px-8">
+              <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                <div>
+                  <p className="text-sm font-bold tracking-widest text-[var(--md-sys-color-primary)]">
+                    DISCOVER · {section.number}
+                  </p>
+
+                  <div
+                    aria-hidden="true"
+                    className="mt-6 flex h-16 w-16 items-center justify-center rounded-2xl text-4xl"
+                    style={{ backgroundColor: section.color }}
+                  >
+                    {section.icon}
+                  </div>
+
+                  <h2
+                    id={`${section.id}-heading`}
+                    className="mt-7 text-3xl font-bold tracking-tight sm:text-4xl"
+                  >
+                    {section.title}
+                  </h2>
+
+                  <p className="mt-5 max-w-xl text-base leading-8 text-[var(--md-sys-color-on-surface-variant)]">
+                    {section.description}
+                  </p>
+
+                  <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--md-sys-color-surface-container)] px-4 py-2 text-xs font-semibold text-[var(--md-sys-color-on-surface-variant)]">
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: section.color }}
+                    />
+                    {sectionLabels.comingSoon}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                  {section.labels.map((label, index) => (
+                    <div
+                      key={label}
+                      className={`flex min-h-36 flex-col justify-between rounded-3xl border border-[var(--md-sys-color-outline-variant)] bg-[var(--md-sys-color-surface-container-low)] p-5 sm:min-h-44 sm:p-7 ${
+                        section.labels.length === 3 && index === 0
+                          ? "col-span-2 sm:col-span-1"
+                          : ""
+                      }`}
+                    >
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ color: section.color }}
+                      >
+                        0{index + 1}
+                      </span>
+
+                      <span className="text-base font-semibold leading-6">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
 
         {/* Favorite Singer / Theme */}
         <section
