@@ -840,8 +840,9 @@ export function HomePage({ locale }: HomePageProps) {
                 ) : section.id === "music" ? (
                   <div className="grid grid-cols-2 gap-4 sm:gap-5">
                     {section.labels.map((label, index) => (
-                      <div
+                      <Link
                         key={label}
+                        href={`/${locale}/music`}
                         className={`group relative flex min-h-48 flex-col justify-between overflow-hidden rounded-[1.75rem] border border-[var(--md-sys-color-outline-variant)] bg-[var(--md-sys-color-surface)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:min-h-56 sm:p-7 ${
                           index === 0 ? "row-span-2 min-h-[25rem] sm:min-h-[29rem]" : ""
                         }`}
@@ -906,7 +907,7 @@ export function HomePage({ locale }: HomePageProps) {
                             <ArrowRight size={15} aria-hidden="true" />
                           </span>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 ) : section.id === "music-theory" ? (
